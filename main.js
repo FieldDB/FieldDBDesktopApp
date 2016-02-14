@@ -7,13 +7,13 @@ var argv = require('yargs')
 if (argv.test) {
   require('electron-compile').init()
   var TestApplication = require('electron-jasmine').TestApplication
-  new TestApplication({specDirectory: 'spec'})
-}
-else {
-  if (argv.environment == 'production') {
-    require('electron-compile').initForProduction(path.join(__dirname, 'compile-cache'))
-  }
-  else {
+  new TestApplication({
+    specDirectory: 'spec'
+  })
+} else {
+  if (false && argv.environment == 'production') {
+    require('electron-compile').init(path.join(__dirname, 'compile-cache'))
+  } else {
     console.log('In development mode')
     require('electron-compile').init()
   }

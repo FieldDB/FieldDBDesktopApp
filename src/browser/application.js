@@ -30,7 +30,9 @@ class Application {
     if (fileNamesToOpen.length)
       this.openFiles(fileNamesToOpen);
     else
-      this.openWindow(null, {showWelcomeFile: true})
+      this.openWindow(null, {
+        showWelcomeFile: true
+      })
   }
 
   openNewWindow() {
@@ -39,8 +41,9 @@ class Application {
 
   saveActiveFile() {
     let win = BrowserWindow.getFocusedWindow()
-    if (win)
+    if (win) {
       win.webContents.send('save-active-file')
+    }
   }
 
   saveActiveFileAs() {
@@ -54,9 +57,10 @@ class Application {
     var options = {
       title: 'Open an SVG file',
       properties: ['openFile', 'multiSelections'],
-      filters: [
-        { name: 'SVG files', extensions: ['svg'] }
-      ]
+      filters: [{
+        name: 'SVG files',
+        extensions: ['svg']
+      }]
     };
 
     dialog.showOpenDialog(null, options, (fileNames) => {
@@ -65,7 +69,7 @@ class Application {
   }
 
   openFiles(fileNames) {
-    if (fileNames && fileNames.length){
+    if (fileNames && fileNames.length) {
       for (let fileName of fileNames)
         this.openWindow(fileName)
     }
@@ -73,11 +77,13 @@ class Application {
 
   openWindow(fileName, options) {
     var win, windowPath;
-    windowPath = path.resolve(__dirname, "..", "editor-window", "index.html");
+    windowPath = path.resolve('file://', __dirname, "../..", "node_modules/fielddb/angular_client/modules/core/dist", "index.html");
     win = new ApplicationWindow(windowPath, {
       width: 1200,
       height: 800
-    }, ObjectAssign({fileName: fileName}, options));
+    }, ObjectAssign({
+      fileName: fileName
+    }, options));
     this.addWindow(win);
   }
 

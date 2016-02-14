@@ -24,6 +24,7 @@
     "electron-rebuild": "^1.0.2"
   },
   "dependencies": {
+    "fielddb-angular": "git://github.com/FieldDB/bower-fielddb-angular.git",
     "atom-keymap": "^6.1.0",
     "clear-cut": "^2.0.1",
     "curve": "^0.1.1",
