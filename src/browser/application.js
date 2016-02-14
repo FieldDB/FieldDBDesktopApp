@@ -42,6 +42,7 @@ class Application {
   saveActiveFile() {
     let win = BrowserWindow.getFocusedWindow()
     if (win) {
+      win.webContents.openDevTools();
       win.webContents.send('save-active-file')
     }
   }
